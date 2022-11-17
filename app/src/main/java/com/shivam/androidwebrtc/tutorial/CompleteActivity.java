@@ -132,6 +132,7 @@ public class CompleteActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
+
     @AfterPermissionGranted(RC_CALL)
     private void start() {
         String[] perms = {Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
@@ -140,16 +141,19 @@ public class CompleteActivity extends AppCompatActivity {
             Log.e(TAG, "BEFORE");
 
             connectToSignallingServer();
-
             initializeSurfaceViews();
-
             initializePeerConnectionFactory();
 
-            createVideoTrackFromCameraAndShowIt();
+            createVideoTrackFromCameraAndShowIt(); //problem in here!!
+
+
+            /*
 
             initializePeerConnections();
 
             startStreamingVideo();
+
+             */
 
             Log.e(TAG, "FINISHING");
         } else {
@@ -288,13 +292,13 @@ public class CompleteActivity extends AppCompatActivity {
 
     private void initializeSurfaceViews() {
         rootEglBase = EglBase.create();
-        binding.surfaceView.init(rootEglBase.getEglBaseContext(), null);
-        binding.surfaceView.setEnableHardwareScaler(true);
-        binding.surfaceView.setMirror(true);
+        //binding.surfaceView.init(rootEglBase.getEglBaseContext(), null);
+        //binding.surfaceView.setEnableHardwareScaler(true);
+        //binding.surfaceView.setMirror(true);
 
         binding.surfaceView2.init(rootEglBase.getEglBaseContext(), null);
         binding.surfaceView2.setEnableHardwareScaler(true);
-        binding.surfaceView2.setMirror(true);
+        binding.surfaceView2.setMirror(false); //for front facing cameras not need for screen mirroring
 
     }
 
@@ -315,7 +319,7 @@ public class CompleteActivity extends AppCompatActivity {
 
             videoTrackFromCamera = factory.createVideoTrack(VIDEO_TRACK_ID, videoSource);
             videoTrackFromCamera.setEnabled(true);
-            videoTrackFromCamera.addRenderer(new VideoRenderer(binding.surfaceView));
+            //videoTrackFromCamera.addRenderer(new VideoRenderer(binding.surfaceView));
 
             //create an AudioSource instance
             // TB - removed as no requirement for audio in application
@@ -323,15 +327,18 @@ public class CompleteActivity extends AppCompatActivity {
             localAudioTrack = factory.createAudioTrack("101", audioSource);
         }
         else{
-            VideoCapturer videoCapturer = createScreenCapturer();
-            VideoSource videoSource = factory.createVideoSource(videoCapturer);
-            videoCapturer.startCapture(VIDEO_RESOLUTION_WIDTH, VIDEO_RESOLUTION_HEIGHT, FPS);
+            VideoCapturer videoCapturer = createScreenCapturer();;
+            try{
+                VideoSource videoSource = factory.createVideoSource(videoCapturer);
+                videoCapturer.startCapture(VIDEO_RESOLUTION_WIDTH, VIDEO_RESOLUTION_HEIGHT, FPS);
+                videoTrackFromCamera = factory.createVideoTrack(VIDEO_TRACK_ID, videoSource);
+                videoTrackFromCamera.setEnabled(true);
 
-            videoTrackFromCamera = factory.createVideoTrack(VIDEO_TRACK_ID, videoSource);
-            videoTrackFromCamera.setEnabled(true);
-
-            //videoTrackFromCamera.addRenderer(new VideoRenderer(binding.surfaceView));
-
+                //videoTrackFromCamera.addRenderer(new VideoRenderer(binding.surfaceView));
+            }
+            catch (Exception e){
+                Log.d(TAG, "TOM ERROR - " + e.toString());
+            }
         }
     }
 
@@ -423,7 +430,7 @@ public class CompleteActivity extends AppCompatActivity {
                     Log.d(TAG, "onIceCandidate: sending candidate " + message);
                     sendMessage(message);
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Log.d(TAG, e.toString());
                 }
             }
 

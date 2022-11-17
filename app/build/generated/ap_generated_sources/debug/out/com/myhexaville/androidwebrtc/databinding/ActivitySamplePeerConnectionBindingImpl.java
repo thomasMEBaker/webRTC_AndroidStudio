@@ -15,8 +15,7 @@ public class ActivitySamplePeerConnectionBindingImpl extends ActivitySamplePeerC
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.toolbar, 1);
-        sViewsWithIds.put(R.id.surface_view, 2);
-        sViewsWithIds.put(R.id.surface_view2, 3);
+        sViewsWithIds.put(R.id.surface_view2, 2);
     }
     // views
     @NonNull
@@ -27,12 +26,11 @@ public class ActivitySamplePeerConnectionBindingImpl extends ActivitySamplePeerC
     // Inverse Binding Event Handlers
 
     public ActivitySamplePeerConnectionBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 4, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 3, sIncludes, sViewsWithIds));
     }
     private ActivitySamplePeerConnectionBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
             , (org.webrtc.SurfaceViewRenderer) bindings[2]
-            , (org.webrtc.SurfaceViewRenderer) bindings[3]
             , (androidx.appcompat.widget.Toolbar) bindings[1]
             );
         this.mboundView0 = (androidx.coordinatorlayout.widget.CoordinatorLayout) bindings[0];

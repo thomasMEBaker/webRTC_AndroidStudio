@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Users\\Tom Baker\\Desktop\\Streaming Solution\\AndroidWebRTC-master\\VideoWebRTC\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+            "outputFile": "D:\\Users\\Tom Baker\\Documents\\GitHub\\webRTC_AndroidStudio\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
             "map": [
                 {
                     "source": "D:\\Users\\TomBaker\\.gradle\\caches\\transforms-2\\files-2.1\\a86025cef785e668bc6086e435fc793f\\material-1.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",

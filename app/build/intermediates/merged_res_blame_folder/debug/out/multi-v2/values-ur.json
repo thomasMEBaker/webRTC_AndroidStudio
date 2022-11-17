@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Users\\Tom Baker\\Desktop\\Streaming Solution\\AndroidWebRTC-master\\VideoWebRTC\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ur\\values-ur.xml",
+            "outputFile": "D:\\Users\\Tom Baker\\Documents\\GitHub\\webRTC_AndroidStudio\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ur\\values-ur.xml",
             "map": [
                 {
                     "source": "D:\\Users\\TomBaker\\.gradle\\caches\\transforms-2\\files-2.1\\91614a818a68abfde73a182288fe99c7\\jetified-play-services-base-17.0.0\\res\\values-ur\\values.xml",

@@ -1151,6 +1151,7 @@ id barrier
 id beginning
 id blocking
 id bottom
+id button2
 id buttonPanel
 id cancel_action
 id center
@@ -1306,7 +1307,6 @@ id status_bar_latest_event_content
 id stretch
 id submenuarrow
 id submit_area
-id surface_view
 id surface_view2
 id tabMode
 id tag_transition_group

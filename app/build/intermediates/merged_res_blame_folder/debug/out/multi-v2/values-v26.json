@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Users\\Tom Baker\\Desktop\\Streaming Solution\\AndroidWebRTC-master\\VideoWebRTC\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v26\\values-v26.xml",
+            "outputFile": "D:\\Users\\Tom Baker\\Documents\\GitHub\\webRTC_AndroidStudio\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v26\\values-v26.xml",
             "map": [
                 {
                     "source": "D:\\Users\\TomBaker\\.gradle\\caches\\transforms-2\\files-2.1\\4a523327301d263e56c3f148b9354b1b\\appcompat-1.0.0\\res\\values-v26\\values-v26.xml",

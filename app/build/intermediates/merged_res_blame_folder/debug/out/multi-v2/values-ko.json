@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Users\\Tom Baker\\Desktop\\Streaming Solution\\AndroidWebRTC-master\\VideoWebRTC\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ko\\values-ko.xml",
+            "outputFile": "D:\\Users\\Tom Baker\\Documents\\GitHub\\webRTC_AndroidStudio\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ko\\values-ko.xml",
             "map": [
                 {
                     "source": "D:\\Users\\TomBaker\\.gradle\\caches\\transforms-2\\files-2.1\\7a861feea8624e41113a58a5fe138f12\\core-1.0.0\\res\\values-ko\\values-ko.xml",

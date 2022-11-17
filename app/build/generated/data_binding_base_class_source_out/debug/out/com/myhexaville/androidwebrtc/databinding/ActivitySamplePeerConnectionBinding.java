@@ -16,19 +16,14 @@ import org.webrtc.SurfaceViewRenderer;
 
 public abstract class ActivitySamplePeerConnectionBinding extends ViewDataBinding {
   @NonNull
-  public final SurfaceViewRenderer surfaceView;
-
-  @NonNull
   public final SurfaceViewRenderer surfaceView2;
 
   @NonNull
   public final Toolbar toolbar;
 
   protected ActivitySamplePeerConnectionBinding(Object _bindingComponent, View _root,
-      int _localFieldCount, SurfaceViewRenderer surfaceView, SurfaceViewRenderer surfaceView2,
-      Toolbar toolbar) {
+      int _localFieldCount, SurfaceViewRenderer surfaceView2, Toolbar toolbar) {
     super(_bindingComponent, _root, _localFieldCount);
-    this.surfaceView = surfaceView;
     this.surfaceView2 = surfaceView2;
     this.toolbar = toolbar;
   }
