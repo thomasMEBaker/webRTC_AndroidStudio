@@ -102,19 +102,29 @@ public class CompleteActivity extends AppCompatActivity {
     //Firestore
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    @Override
+    protected void onStart() {
+        Log.e(TAG, " ----------------------ON START----------------------");
+        super.onStart();
+    }
+
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.e(TAG, " ----------------------ON CREATE----------------------");
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            startScreenCapture();
-        }
 
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sample_peer_connection);
         setSupportActionBar(binding.toolbar);
 
-        start();
+//        callScreenCapture();
+//        start();
+    }
+
+
+
+    public void callScreenCapture(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+           startScreenCapture();
+        }
     }
 
     @Override
@@ -144,16 +154,11 @@ public class CompleteActivity extends AppCompatActivity {
             initializeSurfaceViews();
             initializePeerConnectionFactory();
 
-            createVideoTrackFromCameraAndShowIt(); //problem in here!!
-
-
-            /*
+            createVideoTrackFromCameraAndShowIt();
 
             initializePeerConnections();
 
             startStreamingVideo();
-
-             */
 
             Log.e(TAG, "FINISHING");
         } else {
@@ -328,17 +333,12 @@ public class CompleteActivity extends AppCompatActivity {
         }
         else{
             VideoCapturer videoCapturer = createScreenCapturer();;
-            try{
-                VideoSource videoSource = factory.createVideoSource(videoCapturer);
-                videoCapturer.startCapture(VIDEO_RESOLUTION_WIDTH, VIDEO_RESOLUTION_HEIGHT, FPS);
-                videoTrackFromCamera = factory.createVideoTrack(VIDEO_TRACK_ID, videoSource);
-                videoTrackFromCamera.setEnabled(true);
+            VideoSource videoSource = factory.createVideoSource(videoCapturer);
+            videoCapturer.startCapture(VIDEO_RESOLUTION_WIDTH, VIDEO_RESOLUTION_HEIGHT, FPS);
+            videoTrackFromCamera = factory.createVideoTrack(VIDEO_TRACK_ID, videoSource);
+            videoTrackFromCamera.setEnabled(true);
 
-                //videoTrackFromCamera.addRenderer(new VideoRenderer(binding.surfaceView));
-            }
-            catch (Exception e){
-                Log.d(TAG, "TOM ERROR - " + e.toString());
-            }
+            //videoTrackFromCamera.addRenderer(new VideoRenderer(binding.surfaceView));
         }
     }
 
@@ -362,10 +362,12 @@ public class CompleteActivity extends AppCompatActivity {
                         Context.MEDIA_PROJECTION_SERVICE);
         startActivityForResult(
                 mediaProjectionManager.createScreenCaptureIntent(), CAPTURE_PERMISSION_REQUEST_CODE);
+
     }
 
     @TargetApi(21)
     private VideoCapturer createScreenCapturer() {
+        Log.d(TAG, "Loggy - "+mMediaProjectionPermissionResultCode);
         if (mMediaProjectionPermissionResultCode != Activity.RESULT_OK) {
             Log.d(TAG, "User didn't give permission to capture the screen.");
             return null;
