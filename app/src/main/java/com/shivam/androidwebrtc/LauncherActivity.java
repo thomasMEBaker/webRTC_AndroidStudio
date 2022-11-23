@@ -29,11 +29,6 @@ public class LauncherActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
     public void openSampleSocketActivity(View view) {
         startActivity(new Intent(this, CompleteActivity.class));
 

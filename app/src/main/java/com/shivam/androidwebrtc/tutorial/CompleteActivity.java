@@ -115,15 +115,21 @@ public class CompleteActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sample_peer_connection);
         setSupportActionBar(binding.toolbar);
 
-//        callScreenCapture();
-//        start();
+        Log.e(TAG, "API Value - " + String.valueOf(Build.VERSION.SDK_INT));
+
+        callScreenCapture();
+        //start();
+
     }
-
-
 
     public void callScreenCapture(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
            startScreenCapture();
+            Log.e(TAG, "Correct Build.VERSION");
+
+        }
+        else{
+            Log.e(TAG, "Incorrect Build.VERSION");
         }
     }
 
@@ -156,9 +162,9 @@ public class CompleteActivity extends AppCompatActivity {
 
             createVideoTrackFromCameraAndShowIt();
 
-            initializePeerConnections();
+            //initializePeerConnections();
 
-            startStreamingVideo();
+            //startStreamingVideo();
 
             Log.e(TAG, "FINISHING");
         } else {
@@ -168,10 +174,7 @@ public class CompleteActivity extends AppCompatActivity {
 
     private void connectToSignallingServer() {
         try {
-            // For me this was "http://192.168.1.220:3000";
-            // $ hostname -I
-            //String URL = "https://calm-badlands-59575.herokuapp.com/";
-            String URL = "http://192.168.0.93:3000";
+            String URL = "http://192.168.1.175:3000";
             Log.e(TAG, "REPLACE ME: IO Socket:" + URL);
             socket = IO.socket(URL);
 
@@ -314,6 +317,7 @@ public class CompleteActivity extends AppCompatActivity {
     }
 
     private void createVideoTrackFromCameraAndShowIt() {
+        /*
         boolean camera_capture = false;
 
         if (camera_capture == true){
@@ -332,6 +336,8 @@ public class CompleteActivity extends AppCompatActivity {
             localAudioTrack = factory.createAudioTrack("101", audioSource);
         }
         else{
+         */
+        try{
             VideoCapturer videoCapturer = createScreenCapturer();;
             VideoSource videoSource = factory.createVideoSource(videoCapturer);
             videoCapturer.startCapture(VIDEO_RESOLUTION_WIDTH, VIDEO_RESOLUTION_HEIGHT, FPS);
@@ -340,6 +346,11 @@ public class CompleteActivity extends AppCompatActivity {
 
             //videoTrackFromCamera.addRenderer(new VideoRenderer(binding.surfaceView));
         }
+        catch (Exception e){
+            Log.d(TAG, "ERRROR HERE -" + e);
+        }
+
+        //}
     }
 
     private void initializePeerConnections() {
@@ -355,7 +366,6 @@ public class CompleteActivity extends AppCompatActivity {
         sendMessage("got user media");
     }
 
-    @TargetApi(21)
     private void startScreenCapture() {
         MediaProjectionManager mediaProjectionManager =
                 (MediaProjectionManager) getApplication().getSystemService(
@@ -365,7 +375,6 @@ public class CompleteActivity extends AppCompatActivity {
 
     }
 
-    @TargetApi(21)
     private VideoCapturer createScreenCapturer() {
         Log.d(TAG, "Loggy - "+mMediaProjectionPermissionResultCode);
         if (mMediaProjectionPermissionResultCode != Activity.RESULT_OK) {
@@ -470,7 +479,7 @@ public class CompleteActivity extends AppCompatActivity {
 
         return factory.createPeerConnection(rtcConfig, pcConstraints, pcObserver);
     }
-
+/*
     private VideoCapturer createVideoCapturer() {
         VideoCapturer videoCapturer;
 
@@ -512,5 +521,6 @@ public class CompleteActivity extends AppCompatActivity {
     private boolean useCamera2() {
         return Camera2Enumerator.isSupported(this);
     }
+ */
 }
 
